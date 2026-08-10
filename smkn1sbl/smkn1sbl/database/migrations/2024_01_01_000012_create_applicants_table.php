@@ -12,12 +12,15 @@ return new class extends Migration
             $table->id();
             $table->string('registration_number')->unique();
             $table->string('full_name');
-            $table->string('nisn')->nullable();
+            $table->string('nisn')->unique()->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->text('address')->nullable();
             $table->string('previous_school')->nullable();
-            $table->string('chosen_major')->nullable(); // jurusan pilihan
+            $table->foreignId('major_id')
+                ->nullable()
+                ->contrained('majors')
+                ->nullOnDelete();
             $table->timestamps();
         });
     }
