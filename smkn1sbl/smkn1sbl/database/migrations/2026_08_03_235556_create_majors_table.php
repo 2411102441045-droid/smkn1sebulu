@@ -13,7 +13,7 @@ return new class extends Migration
             $table->id();
             $table->string('slug')->unique();   // tkj, mp, atp
             $table->string('code')->unique();   // TKJ, MP, ATP
-            $table->string('name');
+            $table->string('name')->unique();
             $table->text('description')->nullable();
             $table->unsignedInteger('capacity')->default(36); // kapasitas kuota per jurusan
             $table->string('icon')->nullable();     // key ikon SVG fallback
