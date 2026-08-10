@@ -10,10 +10,26 @@ return new class extends Migration
     {
         Schema::create('ppdb_documents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('registration_id')->constrained('ppdb_registrations')->cascadeOnDelete();
-            $table->string('document_type'); // KK, Akte Lahir, Ijazah/SKL, Foto, dll
-            $table->string('file_path');
+
+            $table->foreignId('registration_id')
+                  ->constrained('ppdb_registrations')
+                  ->cascadeOnDelete();
+
+            $table->enum('document_type', [
+                'kk',
+                'akta_kelahiran',
+                'rapor',
+                'pas_foto',
+                'kip',
+                'surat_keterangan_lulus',
+                'lainnya'
+            ]);
+
             $table->string('file_name');
+            $table->string('file_path');
+            $table->string('mime_type')->nullable();
+            $table->unsignedBigInteger('file_size')->nullable(); // byte
+
             $table->timestamps();
         });
     }
