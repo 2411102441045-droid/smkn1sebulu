@@ -10,17 +10,19 @@ return new class extends Migration
     {
         Schema::create('applicants', function (Blueprint $table) {
             $table->id();
-            $table->string('registration_number')->unique();
+
             $table->string('full_name');
             $table->string('nisn')->unique()->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->text('address')->nullable();
             $table->string('previous_school')->nullable();
+
             $table->foreignId('major_id')
-                ->nullable()
-                ->contrained('majors')
-                ->nullOnDelete();
+                  ->nullable()
+                  ->constrained('majors')
+                  ->nullOnDelete();
+
             $table->timestamps();
         });
     }
