@@ -11,9 +11,13 @@ return new class extends Migration
         Schema::create('registrations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('applicant_id')->constrained()->cascadeOnDelete();
-            $table->string('wave')->nullable();          // gelombang pendaftaran
             $table->date('registration_date');
-            $table->string('status')->default('pending'); // pending, verified, accepted, rejected
+            $table->enum('status',[
+                         'pending',
+                         'verified',
+                         'accepted',
+                         'rejected'
+                         ])->default('pending');
             $table->text('notes')->nullable();
             $table->timestamps();
         });
