@@ -10,13 +10,26 @@ return new class extends Migration
     {
         Schema::create('ppdb_parents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('registration_id')->unique()->constrained('ppdb_registrations')->cascadeOnDelete();
+
+            $table->foreignId('registration_id')
+                  ->unique()
+                  ->constrained('ppdb_registrations')
+                  ->cascadeOnDelete();
+
+            // Data Ayah
             $table->string('father_name')->nullable();
             $table->string('father_phone')->nullable();
             $table->string('father_occupation')->nullable();
+            $table->string('father_education')->nullable();
+            $table->decimal('father_income', 15, 2)->nullable();
+
+            // Data Ibu
             $table->string('mother_name')->nullable();
             $table->string('mother_phone')->nullable();
             $table->string('mother_occupation')->nullable();
+            $table->string('mother_education')->nullable();
+            $table->decimal('mother_income', 15, 2)->nullable();
+
             $table->timestamps();
         });
     }
