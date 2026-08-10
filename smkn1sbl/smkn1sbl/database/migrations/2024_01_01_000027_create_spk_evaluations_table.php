@@ -13,8 +13,8 @@ return new class extends Migration
             $table->foreignId('alternative_id')->constrained('spk_alternatives')->cascadeOnDelete();
             $table->foreignId('criteria_id')->constrained('spk_criteria')->cascadeOnDelete();
             $table->decimal('value', 10, 2); // nilai mentah alternatif thd kriteria
-            $table->timestamps();
             $table->unique(['alternative_id', 'criteria_id']);
+            $tabel->timestamp();
         });
     }
 
