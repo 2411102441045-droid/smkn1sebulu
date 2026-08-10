@@ -22,3 +22,4 @@ return new class extends Migration
         Schema::dropIfExists('rules');
     }
 };
+//cf_value kepake atoo gaa iniii? msi pending yashh
