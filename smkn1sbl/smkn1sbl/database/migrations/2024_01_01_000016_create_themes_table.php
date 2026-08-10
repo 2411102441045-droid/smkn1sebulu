@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('themes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('primary_color')->default('#2563EB');   // biru muda khas SMK
             $table->string('secondary_color')->default('#60A5FA');
             $table->string('accent_color')->default('#DBEAFE');
