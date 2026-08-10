@@ -24,3 +24,5 @@ return new class extends Migration
         });
     }
 };
+
+//belum di putuskan karna double sama user table
