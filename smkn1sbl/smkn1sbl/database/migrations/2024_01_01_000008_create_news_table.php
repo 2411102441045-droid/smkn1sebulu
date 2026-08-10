@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('excerpt')->nullable();
             $table->longText('content');
             $table->string('cover_image')->nullable();
-            $table->string('status')->default('draft'); // draft | published
+            $table->enum('status', ['draft','published'])->default('draft');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
