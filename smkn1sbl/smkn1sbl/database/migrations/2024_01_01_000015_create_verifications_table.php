@@ -10,9 +10,13 @@ return new class extends Migration
     {
         Schema::create('verifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('registration_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('registration_id')->unique()->constrained()->cascadeOnDelete();
             $table->foreignId('verified_by')->nullable()->constrained('users')->nullOnDelete();
-            $table->string('status')->default('pending'); // pending, valid, invalid
+            $table->enum('status',[
+                         'pending',
+                         'valid',
+                         'invalid'
+                         ])->default('pending');
             $table->text('remarks')->nullable();
             $table->timestamp('verified_at')->nullable();
             $table->timestamps();
