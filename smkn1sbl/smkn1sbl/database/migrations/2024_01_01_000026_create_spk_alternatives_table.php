@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('spk_alternatives', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique(); // A1, A2, ...
-            $table->string('name');
+            $table->string('name')->uique();
             $table->text('description')->nullable();
             $table->timestamps();
         });
@@ -22,3 +22,4 @@ return new class extends Migration
         Schema::dropIfExists('spk_alternatives');
     }
 };
+//ini tabel doublenya majors
