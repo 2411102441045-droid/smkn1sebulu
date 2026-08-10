@@ -10,9 +10,12 @@ return new class extends Migration
     {
         Schema::create('consultations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
-            $table->string('guest_name')->nullable();
-            $table->dateTime('consulted_at');
+
+            $table->foreignId('applicant_id')
+                  ->unique()
+                  ->constrained()
+                  ->cascadeOnDelete();
+
             $table->timestamps();
         });
     }
