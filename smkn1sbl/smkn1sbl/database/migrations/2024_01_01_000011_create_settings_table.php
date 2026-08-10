@@ -12,7 +12,8 @@ return new class extends Migration
             $table->id();
             $table->string('key')->unique();   // school_name, primary_color, hero_image, etc
             $table->longText('value')->nullable();
-            $table->string('group')->default('general'); // general, theme, ppdb
+            $table->enum('group',['general','theme','ppdb'])
+                ->default('general');
             $table->timestamps();
         });
     }
