@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('consultation_id')->constrained()->cascadeOnDelete();
             $table->foreignId('question_id')->constrained()->cascadeOnDelete();
+            //tergantung metode
             $table->decimal('cf_user', 4, 2)->default(0); // keyakinan user thd gejala
             $table->timestamps();
         });
