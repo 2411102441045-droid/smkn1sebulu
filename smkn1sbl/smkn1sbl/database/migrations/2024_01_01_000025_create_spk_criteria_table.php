@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('spk_criteria', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();  // C1, C2, ...
-            $table->string('name');
+            $table->string('name')->unique();
             $table->enum('type', ['benefit', 'cost'])->default('benefit');
             $table->decimal('weight', 5, 4)->default(0); // bobot kriteria (SAW/WP/dll)
             $table->timestamps();
