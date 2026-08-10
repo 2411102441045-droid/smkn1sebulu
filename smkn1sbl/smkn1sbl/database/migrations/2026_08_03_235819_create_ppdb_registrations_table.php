@@ -10,18 +10,26 @@ return new class extends Migration
     {
         Schema::create('ppdb_registrations', function (Blueprint $table) {
             $table->id();
+
             $table->string('registration_number')->unique();
-            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+
+            // Satu applicant hanya memiliki satu pendaftaran PPDB
+            $table->foreignId('applicant_id')
+                  ->unique()
+                  ->constrained()
+                  ->cascadeOnDelete();
+
             $table->enum('status', [
-                'draft',            // masih diisi calon siswa
-                'submitted',        // sudah dikirim, menunggu verifikasi
-                'documents_valid',  // berkas terverifikasi
-                'documents_invalid',// berkas ditolak, perlu revisi
-                'graded',           // nilai rapor sudah diproses OCR
-                'recommended',      // sudah dapat rekomendasi jurusan (SAW)
-                'accepted',         // diterima
-                'rejected',         // ditolak
+                'draft',             // masih mengisi formulir
+                'submitted',         // formulir sudah dikirim
+                'documents_valid',   // berkas valid
+                'documents_invalid', // berkas perlu diperbaiki
+                'graded',            // nilai rapor selesai diproses OCR
+                'recommended',       // rekomendasi jurusan (SAW & Sistem Pakar) selesai
+                'accepted',          // diterima
+                'rejected',          // ditolak
             ])->default('draft');
+
             $table->timestamps();
         });
     }
