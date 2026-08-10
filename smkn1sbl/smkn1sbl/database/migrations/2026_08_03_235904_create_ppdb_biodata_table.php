@@ -10,15 +10,18 @@ return new class extends Migration
     {
         Schema::create('ppdb_biodata', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('registration_id')->unique()->constrained('ppdb_registrations')->cascadeOnDelete();
+
+            $table->foreignId('registration_id')
+                  ->unique()
+                  ->constrained('ppdb_registrations')
+                  ->cascadeOnDelete();
+
             $table->string('nik', 20)->nullable();
-            $table->string('name');
             $table->string('place_of_birth')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->enum('gender', ['L', 'P'])->nullable();
             $table->string('religion')->nullable();
-            $table->text('address')->nullable();
-            $table->string('school_origin')->nullable(); // asal sekolah (SMP/MTs)
+
             $table->timestamps();
         });
     }
