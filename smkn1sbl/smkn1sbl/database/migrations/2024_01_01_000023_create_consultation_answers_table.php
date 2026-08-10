@@ -9,13 +9,23 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('consultation_answers', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('consultation_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('question_id')->constrained()->cascadeOnDelete();
-            //tergantung metode
-            $table->decimal('cf_user', 4, 2)->default(0); // keyakinan user thd gejala
-            $table->timestamps();
-        });
+    $table->id();
+
+    $table->foreignId('consultation_id')
+          ->constrained()
+          ->cascadeOnDelete();
+
+    $table->foreignId('question_id')
+          ->constrained()
+          ->cascadeOnDelete();
+
+    // Pending: dipakai jika metode menggunakan Certainty Factor
+    $table->decimal('cf_user', 4, 2)->default(0);
+
+    $table->unique(['consultation_id', 'question_id']);
+
+    $table->timestamps();
+});
     }
 
     public function down(): void
