@@ -10,9 +10,9 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->string('type')->default('news'); // news | page | gallery
+            $table->enum('type',['news','page','gallery'])->default('news');
             $table->timestamps();
         });
     }
