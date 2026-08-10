@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('knowledge_bases', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();  // e.g. P01 (jurusan/topik/kasus)
-            $table->string('name');
+            $table->string('code')->unique();  // kode basis pengetahuan
+            $table->string('name')->unique();
             $table->text('description')->nullable();
             $table->text('solution')->nullable(); // rekomendasi/solusi
             $table->timestamps();
